@@ -7,7 +7,7 @@
 `make` 
 
 ## run 
-All the key values are writen to stdout.
+All the key values are writen to stdout. \
 `redis-generate-values.c > keys` 
 
 

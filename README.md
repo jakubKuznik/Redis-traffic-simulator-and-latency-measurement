@@ -1,6 +1,7 @@
 # Dependencies 
 
 ## Install library. 
-  sudo yum install epel-release
-  sudo yum install hiredis-devel
+
+`sudo yum install epel-release` \
+`sudo yum install hiredis-devel`
 

@@ -1,6 +1,4 @@
-Program will write 650 000 records of 9KB size to Redis database that is running on local-host 
-All key-values will be writen on STDOUT separated by ';'
-these values are set as constant in redis-value-generator.c
+The program will write 650 000 records of 9KB size to the Redis database that is running on the local-host All key values will be written on STDOUT separated by ';' these values are set as constant in redis-generate-value.c
 
 ## Install library. 
 

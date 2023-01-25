@@ -10,6 +10,6 @@ The `redis-generate-values` will write 650 000 records of 9KB size to the Redis 
 
 ## run 
 All the key values are writen to stdout. \
-`./redis-generate-values.c > keys` filling the database \\
+`./redis-generate-values.c > keys` filling the database \
 `./redis-write-keys keys` simmulate traffic 
 

@@ -24,7 +24,7 @@ redisContext * connectToRD(char *hostname, int port){
   return c; 
 }
 
-// generate 9KB long string using rand()
+// generate 9KB long string using 
 char * generate9Kstring(){
   char * out = malloc(RECORD_SIZE_BYTES);
   if (out == NULL){

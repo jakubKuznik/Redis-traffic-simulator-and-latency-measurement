@@ -13,9 +13,24 @@ The `redis-generate-values` will write records of X KB size to the Redis databas
 The `redis-write-keys` will do about Y rewrites in the database in an infinite loop. Each database write will set a Z KB long string to existing key.
 
 ### redis-latency-measurement 
-The `redis-latency-measure/redis-latency` measure latency on GET command. And also send W GETS p.s.
-
+The `redis-latency-measure/redis-latency` measure latency on GET command. And also send W GETS p.s. It also gets information about size of important redis files. 
+#### output format: 
+```
+Thu Jan 26 16:33:48 2023 TQS=8991 avg=45 max=2200 avgStart=47 maxStart=14154 appendOnlyAof=0 pdpDumpRdb=0 pdpRedisLog=12
+Thu Jan 26 16:33:49 2023 TQS=9142 avg=44 max=2534 avgStart=46 maxStart=14154 appendOnlyAof=0 pdpDumpRdb=0 pdpRedisLog=12
+```
+```
+TQS ........... Querries p.s 
+avg ........... avg latency in microseconds (in last second)
+max ........... max latency in microseconds (in last second)
+avgStart ...... avg latency (in whole) 
+maxStart ...... maximal latency (in whole)
+appendOnlyAof . redis append only file size 
+pdpDumpRdb .... redis dump rdb file size 
+pdpRedisLog ... redis log file size 
+```
 ## Install library. 
+
 
 `sudo yum install epel-release` \
 `sudo yum install hiredis-devel`

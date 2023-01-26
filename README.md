@@ -28,5 +28,5 @@ The `redis-latency-measure/redis-latency` measure latency on GET command. And al
 ## run 
 All the key values are writen to stdout. \
 `./redis-generate-values.c > keys` filling the database \
-`./redis-write-keys keys` simmulate traffic \
-`./redis-latency keys` measure latency 
+`./redis-write-keys keys` simmulate SET traffic \
+`./redis-latency keys` measure latency and simulate GET traffic 

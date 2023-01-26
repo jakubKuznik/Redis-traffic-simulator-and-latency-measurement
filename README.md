@@ -21,8 +21,8 @@ The `redis-latency-measure/redis-latency` measure latency on GET command. And al
 `sudo yum install hiredis-devel`
 
 ## build 
-`make` 
-`cd redis-latency-measure`
+`make` \
+`cd redis-latency-measure` \
 `make`
 
 ## run 

@@ -192,21 +192,22 @@ int main(int argc, char **argv){
   while (true){ 
     // get key from redis database 
     getKey(keys, key);
-        
+    
+    // update time 
+    cTime = time(NULL); 	  
     // print values each second 
     if (prevTime != cTime){
-      // count avg times 
-      countAvg(totalQuerries, totalQuerriesSec, totalLatency, totalLatencyIS, &avg, &avgS); 
+      if (totalQuerries > 0){
+        // count avg times 
+        countAvg(totalQuerries, totalQuerriesSec, totalLatency, totalLatencyIS, &avg, &avgS);
+	cout << currentTime(cTime) << " TQS=" << totalQuerriesSec 
+             << " avg=" << avgS << " max=" << maxS << " avgStart=" << avg 
+             << " maxStart=" << max << " appendOnlyAof=" << fileSize(APPEND_ONLY_FILE)
+	     << " pdpDumpRdb=" << fileSize(PDP_DUMP) << " pdpRedisLog=" << fileSize(REDIS_LOG)  << endl;
       
-      cout << currentTime(cTime) << " TQS=" << totalQuerriesSec 
-           << " avg=" << avgS << " max=" << maxS << " avgStart=" << avg 
-           << " maxStart=" << max << " appendOnlyAof=" << fileSize(APPEND_ONLY_FILE)
-	   << " pdpDumpRdb=" << fileSize(PDP_DUMP) << " pdpRedisLog=" << fileSize(REDIS_LOG)  << endl;
-      
-      resetCounters(&totalLatencyIS, &totalQuerriesSec, &maxS);      
+        resetCounters(&totalLatencyIS, &totalQuerriesSec, &maxS);     
+      }
     }
-    // update time 
-    cTime = time(NULL); 
     prevTime = cTime;
     
     // count latency for GET 

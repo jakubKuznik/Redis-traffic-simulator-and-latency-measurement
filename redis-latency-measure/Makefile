@@ -1,7 +1,7 @@
 CC = g++
 LD = g++
 
-CPPFLAGS = -g -std=c++11 -lhiredis -lpthread 
+CPPFLAGS = -g -std=c++11 -lhiredis -lpthread -Wall -Wextra -pedantic
 
 all: redis-latency 
 FILES = *

@@ -74,9 +74,8 @@ FILE *parseArgs(int argc, char **argv){
 void getKey(FILE *f, char *key){
   char c;
   int i = 0;
-  int indicator = 0;
   
-  while (c = fgetc(f)){
+  while ((c = fgetc(f))){
     if (c == EOF){
       fseek(f, 0, SEEK_SET); // set file pointer to begin     
     }

@@ -71,6 +71,7 @@ int main(int argc, char **argv){
   char *recordValue = generate9Kstring();
   // start on some random big value then increment 
   
+  redisReply *reply;
  
   char c;
   int i = 0;
@@ -82,7 +83,13 @@ int main(int argc, char **argv){
         key[i] = '\0';
         c = fgetc(keys);
         i = 0;
-        redisCommand(context, "SET %s %b", key, recordValue, RECORD_SIZE_BYTES);
+        reply = redisCommand(context, "SET %s %b", key, recordValue, RECORD_SIZE_BYTES);
+        // Once an error is returned the context cannot be reused 
+        //  and you should set up a new connection.
+        if (reply == NULL){
+          context = connectToRD("localhost", 6379);
+        }   
+        //                         
         usleep(SLEEP_BETWEEN_SET_MICRO_S); // about 7000 p.s
       
         // program liveness indication 

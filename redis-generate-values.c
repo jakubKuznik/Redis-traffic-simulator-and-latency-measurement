@@ -38,6 +38,7 @@ char * generate9Kstring(){
   return out;
 }
 
+
 int main(){   
  
   // redis object that represent database  
@@ -49,11 +50,20 @@ int main(){
   char strRecordKey[50];
   // init random number 
   srand (123); 
+  
+
+  redisReply *reply;
 
   // generate 
   for (int i = 0; i < RECORDS; i++){
     sprintf(strRecordKey, "%llu", recordkey); // convert to string key value  
-    redisCommand(context, "SET %s %b", strRecordKey, recordValue, RECORD_SIZE_BYTES); 
+    reply = redisCommand(context, "SET %s %b", strRecordKey, recordValue, RECORD_SIZE_BYTES); 
+    // Once an error is returned the context cannot be reused 
+    //  and you should set up a new connection.
+    if (reply == NULL){
+      context = connectToRD("localhost", 6379);
+      continue;
+    }   
     printf("%s;",strRecordKey); 
     recordkey += rand(); // adding random value to key
   }

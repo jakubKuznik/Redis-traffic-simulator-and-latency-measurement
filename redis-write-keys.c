@@ -9,6 +9,7 @@
 #include <unistd.h> 
 
 #define RECORD_SIZE_BYTES 9216 // 9KB
+#define SLEEP_BETWEEN_SET_MICRO_S 100
 
 // Connect to redis database
 // If error exit program 
@@ -82,7 +83,7 @@ int main(int argc, char **argv){
         c = fgetc(keys);
         i = 0;
         redisCommand(context, "SET %s %b", key, recordValue, RECORD_SIZE_BYTES);
-        sleep(0.0001); // about 7000 p.s
+        usleep(SLEEP_BETWEEN_SET_MICRO_S); // about 7000 p.s
       
         // program liveness indication 
         if (indicator++ % 100 == 0)

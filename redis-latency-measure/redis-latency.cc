@@ -132,7 +132,7 @@ void statistic(int latency, int *tQ, int *tQS, long long *tL, long long *tLIS, i
 }
 
 // count avg values 
-void countAvg(int tQ, int tQS, long long tL, long long tLIS, int *avg, int *avgS){
+void countAvg(int tQ, int tQS, long long tL, long long tLIS, int *avg, int *avgS)
   *avg  = (int) (tL / tQ);
   *avgS = (int) (tLIS / tQS);  
 }
@@ -192,9 +192,7 @@ int main(int argc, char **argv){
   while (true){ 
     // get key from redis database 
     getKey(keys, key);
-    // update time 
-    cTime = time(NULL);  
-    
+        
     // print values each second 
     if (prevTime != cTime){
       // count avg times 
@@ -207,6 +205,8 @@ int main(int argc, char **argv){
       
       resetCounters(&totalLatencyIS, &totalQuerriesSec, &maxS);      
     }
+    // update time 
+    cTime = time(NULL); 
     prevTime = cTime;
     
     // count latency for GET 

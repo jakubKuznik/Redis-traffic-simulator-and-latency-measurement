@@ -132,7 +132,7 @@ void statistic(int latency, int *tQ, int *tQS, long long *tL, long long *tLIS, i
 }
 
 // count avg values 
-void countAvg(int tQ, int tQS, long long tL, long long tLIS, int *avg, int *avgS)
+void countAvg(int tQ, int tQS, long long tL, long long tLIS, int *avg, int *avgS){
   *avg  = (int) (tL / tQ);
   *avgS = (int) (tLIS / tQS);  
 }

@@ -99,10 +99,18 @@ long long latencyMeasure(redisContext *context, char *key){
     
   // redis get record 
   reply = (redisReply*)redisCommand(context, "GET %s",key);
-    
+
   // end time measure 
   auto timeEnd = chrono::high_resolution_clock::now();
   long long duration = std::chrono::duration_cast<std::chrono::microseconds> (timeEnd - timeStart).count();
+  
+  // Once an error is returned the context cannot be reused 
+  //  and you should set up a new connection.
+  //         
+  if (reply == NULL){
+    context = connectToRD("localhost", 6379);
+    return duration;
+  }    
   
   freeReplyObject(reply); 
   return duration;
@@ -145,7 +153,7 @@ char *currentTime(time_t cTime){
 }
 
 // return size of file
-int fileSize(char *fileName){
+int fileSize(const char *fileName){
    ifstream in_file(fileName, ios::binary);
    in_file.seekg(0, ios::end);
    return in_file.tellg();
